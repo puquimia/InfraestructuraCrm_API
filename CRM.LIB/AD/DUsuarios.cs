@@ -25,8 +25,7 @@ namespace CRM.LIB.AD
             DynamicParameters dPars = new DynamicParameters();
             dPars.Add("Cuenta", cuenta, System.Data.DbType.AnsiString);
             dPars.Add("Contrasena", contrasena, System.Data.DbType.AnsiString);
-            var usuario = await connection.QueryFirstOrDefaultAsync<Usuario>("SELECT Id, Cuenta FROM GEN.Usuario WHERE Cuenta = @Cuenta AND Contrasena = @Contrasena", dPars);
-            return (Usuario)usuario;
+            return await connection.QueryFirstOrDefaultAsync<Usuario>("SELECT Id, Nombre, Apellidos, Cargo FROM GEN.Usuario WHERE Cuenta = @Cuenta AND Contrasena = @Contrasena", dPars);
         }
     }
 }

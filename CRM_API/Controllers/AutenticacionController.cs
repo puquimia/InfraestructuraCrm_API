@@ -33,7 +33,7 @@ namespace CRM_API.Controllers
                 var claims = new List<Claim>()
                 {
                     new Claim(ClaimTypes.NameIdentifier, "1"),
-                    new Claim(ClaimTypes.Name, usuario.Cuenta),
+                    new Claim(ClaimTypes.Name, eUsuario.Cuenta),
                 };
 
                 claim.AddClaims(claims);
@@ -53,8 +53,10 @@ namespace CRM_API.Controllers
                 return StatusCode(StatusCodes.Status200OK,
                     new
                     {
-                        token = token,
-                        user = usuario.Cuenta
+                        Token = token,
+                        IdUsuario = usuario.Id,
+                        Usuario = $"{usuario.Nombre} {usuario.Apellidos}",
+                        Cargo = usuario.Cargo
                     });
             }
             else
